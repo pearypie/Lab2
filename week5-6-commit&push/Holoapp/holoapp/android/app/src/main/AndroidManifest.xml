@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.holoapp">
    <application
-        android:label="holoapp"
+        android:label="Art_Work"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
