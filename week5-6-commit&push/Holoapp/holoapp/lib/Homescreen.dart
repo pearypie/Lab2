@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:holoapp/FoodMenu.dart';
 
+import 'ExchangeRate.dart';
 import 'MoneyBox.dart';
+import 'dart:convert' as convert;
+
+import 'package:http/http.dart' as http;
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -11,6 +15,20 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  late ExchangeRate _dataformapi;
+  @override
+  void initState() {
+    super.initState();
+    print("เรียกใช้งาน initState");
+    getExchangeRate();
+  }
+
+  Future<void> getExchangeRate() async {
+    var url = Uri.parse("https://open.er-api.com/v6/latest/USD");
+    var response = await http.get(url);
+    _dataformapi = exchangeRateFromJson(response.body); //json => dart object
+  }
+
   List<FoodMenu> menu = [
     FoodMenu("กุ้งเผา", "500",
         "https://mpics.mgronline.com/pics/Images/564000013113601.JPEG"),
@@ -21,23 +39,11 @@ class _HomescreenState extends State<Homescreen> {
   int number = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(children: [
-        MoneyBox("ยอดคงเหลือ", 100000, Colors.red, 100),
-        SizedBox(
-          height: 5,
+        appBar: AppBar(
+          title: Text("Api เรียนใช้สกุลเงิน"),
         ),
-        MoneyBox("รายรับ", 7000, Colors.orange, 100),
-        SizedBox(
-          height: 5,
-        ),
-        MoneyBox("รายจ่าย", 5000, Colors.green, 100),
-        SizedBox(
-          height: 5,
-        ),
-        MoneyBox("ค้างขำระเงิน", 400, Colors.purple, 100),
-      ]),
-    ));
+        body: Column(
+          children: [],
+        ));
   }
 }
