@@ -23,10 +23,14 @@ class _HomescreenState extends State<Homescreen> {
     getExchangeRate();
   }
 
-  Future<void> getExchangeRate() async {
+  Future<ExchangeRate> getExchangeRate() async {
     var url = Uri.parse("https://open.er-api.com/v6/latest/USD");
     var response = await http.get(url);
-    _dataformapi = exchangeRateFromJson(response.body); //json => dart object
+    setState(() {
+      _dataformapi = exchangeRateFromJson(response.body);
+      //json => dart object
+    });
+    return _dataformapi;
   }
 
   List<FoodMenu> menu = [
@@ -42,8 +46,30 @@ class _HomescreenState extends State<Homescreen> {
         appBar: AppBar(
           title: Text("Api เรียนใช้สกุลเงิน"),
         ),
-        body: Column(
-          children: [],
+        body: FutureBuilder(
+          future: getExchangeRate(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              var result = snapshot.data;
+              return ListView(
+                children: [
+                  ListTile(
+                    title: Text(result.baseCode),
+                  ),
+                  ListTile(
+                    title: Text(result.timeLastUpdateUtc.toString()),
+                  ),
+                  ListTile(
+                    title: Text(result.rates['THB'].toString()),
+                  ),
+                  ListTile(
+                    title: Text(result.rates['USD'].toString()),
+                  )
+                ],
+              );
+            }
+            return LinearProgressIndicator();
+          },
         ));
   }
 }
