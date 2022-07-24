@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:holoapp/FoodMenu.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -8,26 +9,22 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  List<FoodMenu> menu = [
+    FoodMenu("กุ้งเผา", "500"),
+    FoodMenu("ข้าวหมูกรอบกุ้งกระเทียม", "300"),
+  ];
   @override
   int number = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: ListView(
-        children: getData(10),
-      )),
-    );
-  }
-
-  List<Widget> getData(int count) {
-    List<Widget> data = [];
-    for (var i = 0; i < count; i++) {
-      var menu = ListTile(
-        title: Text("เมนูที่ : ${i + 1}"),
-        subtitle: Text("รายระเอียดที่ : ${i + 1}"),
-      );
-      data.add(menu);
-    }
-    return data;
+        body: ListView.builder(
+            itemCount: menu.length,
+            itemBuilder: (BuildContext context, int index) {
+              FoodMenu food = menu[index];
+              return ListTile(
+                title: Text("ชื่อรายการ : ${food.name}"),
+                subtitle: Text("ราคา : ${food.price}"),
+              );
+            }));
   }
 }
