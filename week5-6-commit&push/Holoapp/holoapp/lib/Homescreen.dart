@@ -51,21 +51,32 @@ class _HomescreenState extends State<Homescreen> {
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.hasData) {
               var result = snapshot.data;
-              return ListView(
-                children: [
-                  ListTile(
-                    title: Text(result.baseCode),
-                  ),
-                  ListTile(
-                    title: Text(result.timeLastUpdateUtc.toString()),
-                  ),
-                  ListTile(
-                    title: Text(result.rates['THB'].toString()),
-                  ),
-                  ListTile(
-                    title: Text(result.rates['USD'].toString()),
-                  )
-                ],
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  children: [
+                    MoneyBox("สกุลเงิน (USD)", result.rates['USD'],
+                        Colors.indigo, 100),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    MoneyBox("USD ----------> AED", result.rates['AED'],
+                        Colors.red, 100),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    MoneyBox("USD ----------> THB", result.rates['THB'],
+                        Colors.green, 100),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    MoneyBox("USD ----------> ARS", result.rates['ARS'],
+                        Colors.orange, 100),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               );
             }
             return LinearProgressIndicator();
