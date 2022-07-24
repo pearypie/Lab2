@@ -3,6 +3,7 @@ import 'dart:html';
 class FoodMenu {
   String name;
   String price;
+  String image;
 
-  FoodMenu(this.name, this.price);
+  FoodMenu(this.name, this.price, this.image);
 }
