@@ -12,33 +12,18 @@ class _HomescreenState extends State<Homescreen> {
   int number = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: new EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  number++;
-                });
-              },
-              child: Icon(Icons.add),
-            ),
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  number--;
-                });
-              },
-              child: Icon(Icons.remove),
-            )
-          ],
-        ),
-      ),
       body: Container(
-          child: Center(
-        child: Text(number.toString()),
+          child: ListView(
+        children: getData(10),
       )),
     );
+  }
+
+  List<Widget> getData(int count) {
+    List<Widget> data = [];
+    for (var i = 0; i < count; i++) {
+      data.add(Text("เมนูที่ ${i + 1}"));
+    }
+    return data;
   }
 }
