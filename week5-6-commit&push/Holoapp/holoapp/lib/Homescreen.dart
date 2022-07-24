@@ -28,15 +28,15 @@ class _HomescreenState extends State<Homescreen> {
         SizedBox(
           height: 5,
         ),
-        MoneyBox("รายรับ", 100000, Colors.orange, 100),
+        MoneyBox("รายรับ", 7000, Colors.orange, 100),
         SizedBox(
           height: 5,
         ),
-        MoneyBox("รายจ่าย", 100000, Colors.green, 100),
+        MoneyBox("รายจ่าย", 5000, Colors.green, 100),
         SizedBox(
           height: 5,
         ),
-        MoneyBox("ค้างขำระเงิน", 100000, Colors.purple, 100),
+        MoneyBox("ค้างขำระเงิน", 400, Colors.purple, 100),
       ]),
     ));
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MoneyBox extends StatefulWidget {
   final String title;
@@ -32,7 +33,7 @@ class _MoneyBoxState extends State<MoneyBox> {
             ),
             Expanded(
                 child: Text(
-              widget.amount.toString(),
+              '${NumberFormat("#,###.##").format(widget.amount)}',
               style: TextStyle(
                   fontSize: 15,
                   color: Colors.white,
