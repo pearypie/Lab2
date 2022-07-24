@@ -22,7 +22,11 @@ class _HomescreenState extends State<Homescreen> {
   List<Widget> getData(int count) {
     List<Widget> data = [];
     for (var i = 0; i < count; i++) {
-      data.add(Text("เมนูที่ ${i + 1}"));
+      var menu = ListTile(
+        title: Text("เมนูที่ : ${i + 1}"),
+        subtitle: Text("รายระเอียดที่ : ${i + 1}"),
+      );
+      data.add(menu);
     }
     return data;
   }
