@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:holoapp/FoodMenu.dart';
 
+import 'MoneyBox.dart';
+
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
 
@@ -19,15 +21,23 @@ class _HomescreenState extends State<Homescreen> {
   int number = 0;
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
-            itemCount: menu.length,
-            itemBuilder: (BuildContext context, int index) {
-              FoodMenu food = menu[index];
-              return ListTile(
-                leading: Image.network(food.image),
-                title: Text("ชื่อรายการ : ${food.name}"),
-                subtitle: Text("ราคา : ${food.price}"),
-              );
-            }));
+        body: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
+        MoneyBox("ยอดคงเหลือ", 100000, Colors.red, 100),
+        SizedBox(
+          height: 5,
+        ),
+        MoneyBox("รายรับ", 100000, Colors.orange, 100),
+        SizedBox(
+          height: 5,
+        ),
+        MoneyBox("รายจ่าย", 100000, Colors.green, 100),
+        SizedBox(
+          height: 5,
+        ),
+        MoneyBox("ค้างขำระเงิน", 100000, Colors.purple, 100),
+      ]),
+    ));
   }
 }
