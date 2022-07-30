@@ -35,12 +35,21 @@ class UserDB {
     return keyID;
   }
 
-  Future<bool> loadAllData() async {
+  Future<List<User>> loadAllData() async {
     var db = await this.openDatabase();
     var store = intMapStoreFactory.store("expense");
 
     var snapshot = await store.find(db);
     print(snapshot);
-    return true;
+    var userlist = <User>[];
+    for (var record in snapshot) {
+      userlist.add(User(
+          username: record["username"] as String,
+          usersurname: record['usersurname'] as String,
+          usernumber: record['usernumber'] as int,
+          usersex: record['usersex'] as String,
+          date: record['date'] as DateTime));
+    }
+    return userlist;
   }
 }
