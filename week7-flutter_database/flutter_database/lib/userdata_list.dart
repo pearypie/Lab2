@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_database/main.dart';
 import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/model/User_datamodel.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,13 @@ class _userdataState extends State<userdata> {
                   color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 onPressed: () {
-                  setState(() {});
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    // ignore: prefer_const_constructors
+                    return const MyHomePage(
+                      title: '',
+                    );
+                  }));
                 },
               )
             ],

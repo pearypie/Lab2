@@ -41,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late bool femaleSelected = false;
   late bool maleSelected = false;
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
@@ -61,7 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                // ignore: prefer_const_constructors
+                return const userdata();
+              }));
+            },
           ),
           backgroundColor: Colors.white.withOpacity(0.1),
           elevation: 0,
@@ -132,160 +138,192 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(scrollDirection: Axis.vertical, children: [
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white, fontSize: 14.5),
-                      decoration: InputDecoration(
-                          prefixIconConstraints: BoxConstraints(minWidth: 45),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: Colors.white70,
-                            size: 22,
-                          ),
-                          border: InputBorder.none,
-                          hintText: "ใส่ชื่อจริง",
-                          hintStyle:
-                              TextStyle(color: Colors.white60, fontSize: 14.5),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white38)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white70))),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white, fontSize: 14.5),
-                      decoration: InputDecoration(
-                          prefixIconConstraints: BoxConstraints(minWidth: 45),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: Colors.white70,
-                            size: 22,
-                          ),
-                          border: InputBorder.none,
-                          hintText: "ใส่นามสกุล",
-                          hintStyle:
-                              TextStyle(color: Colors.white60, fontSize: 14.5),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white38)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white70))),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white, fontSize: 14.5),
-                      decoration: InputDecoration(
-                          prefixIconConstraints: BoxConstraints(minWidth: 45),
-                          prefixIcon: Icon(
-                            Icons.person,
-                            color: Colors.white70,
-                            size: 22,
-                          ),
-                          border: InputBorder.none,
-                          hintText: "ใส่เขบัตรประชาชน",
-                          hintStyle:
-                              TextStyle(color: Colors.white60, fontSize: 14.5),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white38)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100),
-                              borderSide: BorderSide(color: Colors.white70))),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              maleSelected = true;
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: TextFormField(
+                        validator: (str) {
+                          if (str!.isEmpty) {
+                            return "กรุณาใส่ชื่อ";
+                          }
 
-                              femaleSelected = false;
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 20,
-                                  width: 20,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(right: 10),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border:
-                                          Border.all(color: Colors.white60)),
-                                  child: maleSelected
-                                      ? Container(
-                                          margin: EdgeInsets.all(4),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white70),
-                                        )
-                                      : SizedBox()),
-                              Text('Male',
-                                  style: TextStyle(
-                                      color: Colors.white70, fontSize: 14.5))
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              femaleSelected = true;
+                          return null;
+                        },
+                        style: TextStyle(color: Colors.white, fontSize: 14.5),
+                        decoration: InputDecoration(
+                            prefixIconConstraints: BoxConstraints(minWidth: 45),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.white70,
+                              size: 22,
+                            ),
+                            border: InputBorder.none,
+                            hintText: "ใส่ชื่อจริง",
+                            hintStyle: TextStyle(
+                                color: Colors.white60, fontSize: 14.5),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white38)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white70))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: TextFormField(
+                        validator: (str) {
+                          if (str!.isEmpty) {
+                            return "กรุณาใส่นามสกุล";
+                          }
 
-                              maleSelected = false;
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 20,
-                                  width: 20,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.only(right: 10),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border:
-                                          Border.all(color: Colors.white60)),
-                                  child: femaleSelected
-                                      ? Container(
-                                          margin: EdgeInsets.all(4),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white70),
-                                        )
-                                      : SizedBox()),
-                              Text('Female',
-                                  style: TextStyle(
-                                      color: Colors.white70, fontSize: 14.5))
-                            ],
+                          return null;
+                        },
+                        style: TextStyle(color: Colors.white, fontSize: 14.5),
+                        decoration: InputDecoration(
+                            prefixIconConstraints: BoxConstraints(minWidth: 45),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.white70,
+                              size: 22,
+                            ),
+                            border: InputBorder.none,
+                            hintText: "ใส่นามสกุล",
+                            hintStyle: TextStyle(
+                                color: Colors.white60, fontSize: 14.5),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white38)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white70))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: TextFormField(
+                        validator: (str) {
+                          if (str!.isEmpty) {
+                            return "กรุณาใส่เลขบัตรประชาชน";
+                          }
+
+                          return null;
+                        },
+                        style: TextStyle(color: Colors.white, fontSize: 14.5),
+                        decoration: InputDecoration(
+                            prefixIconConstraints: BoxConstraints(minWidth: 45),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.white70,
+                              size: 22,
+                            ),
+                            border: InputBorder.none,
+                            hintText: "ใส่เขบัตรประชาชน",
+                            hintStyle: TextStyle(
+                                color: Colors.white60, fontSize: 14.5),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white38)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                borderSide: BorderSide(color: Colors.white70))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                maleSelected = true;
+
+                                femaleSelected = false;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                    height: 20,
+                                    width: 20,
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(right: 10),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white60)),
+                                    child: maleSelected
+                                        ? Container(
+                                            margin: EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white70),
+                                          )
+                                        : SizedBox()),
+                                Text('Male',
+                                    style: TextStyle(
+                                        color: Colors.white70, fontSize: 14.5))
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                femaleSelected = true;
+
+                                maleSelected = false;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                    height: 20,
+                                    width: 20,
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(right: 10),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white60)),
+                                    child: femaleSelected
+                                        ? Container(
+                                            margin: EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white70),
+                                          )
+                                        : SizedBox()),
+                                Text('Female',
+                                    style: TextStyle(
+                                        color: Colors.white70, fontSize: 14.5))
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: ElevatedButton(
-                      style: raisedButtonStyle,
-                      onPressed: () {},
-                      child: Text('ยืนยันข้อมูล'),
-                    ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: ElevatedButton(
+                        style: raisedButtonStyle,
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              // ignore: prefer_const_constructors
+                              return const userdata();
+                            }));
+                          }
+                        },
+                        child: Text('ยืนยันข้อมูล'),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ]),
           ),
