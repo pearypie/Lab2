@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/userdata_list.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) {}),
+        ChangeNotifierProvider(create: (context) {
+          return UserProvider();
+        })
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
