@@ -42,6 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
   late bool femaleSelected = false;
   late bool maleSelected = false;
   final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final surnameController = TextEditingController();
+  final numberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
@@ -145,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: TextFormField(
+                        controller: nameController,
                         validator: (str) {
                           if (str!.isEmpty) {
                             return "กรุณาใส่ชื่อ";
@@ -175,6 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: TextFormField(
+                        controller: surnameController,
                         validator: (str) {
                           if (str!.isEmpty) {
                             return "กรุณาใส่นามสกุล";
@@ -205,6 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: TextFormField(
+                        controller: numberController,
                         validator: (str) {
                           if (str!.isEmpty) {
                             return "กรุณาใส่เลขบัตรประชาชน";
@@ -311,6 +317,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ElevatedButton(
                         style: raisedButtonStyle,
                         onPressed: () {
+                          var sex;
+                          if (femaleSelected == true) {
+                            setState(() {
+                              sex = 'ผู้ชาย';
+                            });
+                          } else {
+                            setState(() {
+                              sex = 'ผู้หญิง';
+                            });
+                          }
+                          var name = nameController.text;
+                          var surname = surnameController.text;
+                          var number = numberController.text;
+                          print(name);
+                          print(surname);
+                          print(number);
+                          print(sex);
                           if (formKey.currentState!.validate()) {
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
