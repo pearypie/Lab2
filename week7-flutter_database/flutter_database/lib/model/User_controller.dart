@@ -15,6 +15,7 @@ class UserProvider with ChangeNotifier {
     var db = UserDB(dbName: "User.db");
     await db.InsertData(statement);
     user.insert(0, statement);
+    db.loadAllData();
 
     notifyListeners();
   }
