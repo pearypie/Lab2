@@ -94,8 +94,9 @@ class _userdataState extends State<userdata> {
           ),
           body: Consumer(
             builder: ((context, UserProvider provider, Widget? child) {
+              int count = provider.user.length;
               return ListView.builder(
-                  itemCount: provider.user.length,
+                  itemCount: count,
                   itemBuilder: (context, int index) {
                     User data = provider.user[index];
                     return Card(
