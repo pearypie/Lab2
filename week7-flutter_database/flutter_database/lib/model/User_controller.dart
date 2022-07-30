@@ -9,10 +9,12 @@ class UserProvider with ChangeNotifier {
     return user;
   }
 
-  void addUser(User userdata) async {
-    var db = await UserDB(dbName: "User.db").openDatabase();
-    print(db);
-    user.insert(0, userdata);
+  void addUser(User statement) async {
+    //var db = await UserDB(dbName: "User.db").openDatabase();
+    //print(db);
+    var db = UserDB(dbName: "User.db");
+    await db.InsertData(statement);
+    user.insert(0, statement);
 
     notifyListeners();
   }
