@@ -329,6 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 sex = 'ผู้ชาย';
                               });
                             }
+                            var date = DateTime.now();
                             var name = nameController.text;
                             var surname = surnameController.text;
                             var number = numberController.text;
@@ -336,11 +337,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             print(surname);
                             print(number);
                             print(sex);
+                            print(date);
                             User statement = User(
                                 name.toString(),
                                 surname.toString(),
                                 int.parse(number),
-                                sex.toString());
+                                sex.toString(),
+                                date);
 
                             var provider = Provider.of<UserProvider>(context,
                                 listen: false);

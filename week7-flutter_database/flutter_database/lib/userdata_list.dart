@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_database/main.dart';
 import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/model/User_datamodel.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class userdata extends StatefulWidget {
@@ -111,7 +112,8 @@ class _userdataState extends State<userdata> {
                         ),
                         child: ListTile(
                           title: Text(data.username.toString()),
-                          subtitle: Text(data.usersurname.toString()),
+                          subtitle: Text(
+                              "วันที่ลงทะเบียน ---> ${DateFormat("dd/MM/yyyyy").format(data.date)}"),
                         ));
                   });
             }),

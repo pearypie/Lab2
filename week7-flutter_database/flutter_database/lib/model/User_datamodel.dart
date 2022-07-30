@@ -3,6 +3,8 @@ class User {
   String? usersurname;
   int? usernumber;
   String? usersex;
+  DateTime date;
 
-  User(this.username, this.usersurname, this.usernumber, this.usersex);
+  User(this.username, this.usersurname, this.usernumber, this.usersex,
+      this.date);
 }
