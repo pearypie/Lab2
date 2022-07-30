@@ -10,8 +10,6 @@ class UserProvider with ChangeNotifier {
   }
 
   void addUser(User statement) async {
-    //var db = await UserDB(dbName: "User.db").openDatabase();
-    //print(db);
     var db = UserDB(dbName: "User.db");
     await db.InsertData(statement);
     user.insert(0, statement);

@@ -22,33 +22,32 @@ class UserDB {
 
   InsertData(User statement) async {
     var db = await this.openDatabase();
-    var store = intMapStoreFactory.store("expense");
+    var store = intMapStoreFactory.store("keystore");
 
-    var keyID = store.add(db, {
+    var KEYID = store.add(db, {
       "username": statement.username,
-      "usersurname": statement.usernumber,
+      "usersurname": statement.usersurname,
       "usernumber": statement.usernumber,
       "usersex": statement.usersex,
       "date": statement.date.toIso8601String()
     });
     db.close();
-    return keyID;
+    return KEYID;
   }
 
   Future<List<User>> loadAllData() async {
     var db = await this.openDatabase();
-    var store = intMapStoreFactory.store("expense");
+    var store = intMapStoreFactory.store("keystore");
 
     var snapshot = await store.find(db);
-    print(snapshot);
     var userlist = <User>[];
     for (var record in snapshot) {
       userlist.add(User(
-          username: record["username"] as String,
-          usersurname: record['usersurname'] as String,
-          usernumber: record['usernumber'] as int,
-          usersex: record['usersex'] as String,
-          date: record['date'] as DateTime));
+          username: record["username"] as String?,
+          usersurname: record['usersurname'] as String?,
+          usernumber: record['usernumber'] as int?,
+          usersex: record['usersex'] as String?,
+          date: DateTime.now()));
     }
     return userlist;
   }

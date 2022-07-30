@@ -333,11 +333,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             var name = nameController.text;
                             var surname = surnameController.text;
                             var number = numberController.text;
-                            print(name);
-                            print(surname);
-                            print(number);
-                            print(sex);
-                            print(date);
+                            print('name ---> ${name}');
+                            print('surname ---> ${surname}');
+                            print('number ---> ${number}');
+                            print('sex ---> ${sex}');
+                            print('date ---> ${date}');
+
                             User statement = User(
                                 username: name.toString(),
                                 usersurname: surname.toString(),
