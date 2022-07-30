@@ -15,5 +15,7 @@ class UserProvider with ChangeNotifier {
 
   void addUser(User userdata) {
     user.add(userdata);
+
+    notifyListeners();
   }
 }

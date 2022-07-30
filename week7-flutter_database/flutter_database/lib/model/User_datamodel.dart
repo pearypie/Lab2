@@ -1,8 +1,8 @@
 class User {
-  String name;
-  String surname;
-  int number;
-  String sex;
+  String? username;
+  String? usersurname;
+  int? usernumber;
+  String? usersex;
 
-  User(this.name, this.surname, this.number, this.sex);
+  User(this.username, this.usersurname, this.usernumber, this.usersex);
 }

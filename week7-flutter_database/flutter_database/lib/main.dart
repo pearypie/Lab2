@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_database/model/User_controller.dart';
+import 'package:flutter_database/model/User_datamodel.dart';
 import 'package:flutter_database/userdata_list.dart';
 import 'package:provider/provider.dart';
 
@@ -317,24 +318,33 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ElevatedButton(
                         style: raisedButtonStyle,
                         onPressed: () {
-                          var sex;
-                          if (femaleSelected == true) {
-                            setState(() {
-                              sex = 'ผู้ชาย';
-                            });
-                          } else {
-                            setState(() {
-                              sex = 'ผู้หญิง';
-                            });
-                          }
-                          var name = nameController.text;
-                          var surname = surnameController.text;
-                          var number = numberController.text;
-                          print(name);
-                          print(surname);
-                          print(number);
-                          print(sex);
                           if (formKey.currentState!.validate()) {
+                            var sex;
+                            if (femaleSelected == true) {
+                              setState(() {
+                                sex = 'ผู้หญิง';
+                              });
+                            } else {
+                              setState(() {
+                                sex = 'ผู้ชาย';
+                              });
+                            }
+                            var name = nameController.text;
+                            var surname = surnameController.text;
+                            var number = numberController.text;
+                            print(name);
+                            print(surname);
+                            print(number);
+                            print(sex);
+                            User statement = User(
+                                name.toString(),
+                                surname.toString(),
+                                int.parse(number),
+                                sex.toString());
+
+                            var provider = Provider.of<UserProvider>(context,
+                                listen: false);
+                            provider.addUser(statement);
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
                               // ignore: prefer_const_constructors

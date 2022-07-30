@@ -109,8 +109,8 @@ class _userdataState extends State<userdata> {
                               const BorderRadius.all(Radius.circular(12)),
                         ),
                         child: ListTile(
-                          title: Text(data.name.toString()),
-                          subtitle: Text(data.surname.toString()),
+                          title: Text(data.username.toString()),
+                          subtitle: Text(data.usersurname.toString()),
                         ));
                   });
             }),
