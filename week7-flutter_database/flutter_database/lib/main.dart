@@ -339,11 +339,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             print(sex);
                             print(date);
                             User statement = User(
-                                name.toString(),
-                                surname.toString(),
-                                int.parse(number),
-                                sex.toString(),
-                                date);
+                                username: name.toString(),
+                                usersurname: surname.toString(),
+                                usernumber: int.parse(number),
+                                usersex: sex.toString(),
+                                date: date);
 
                             var provider = Provider.of<UserProvider>(context,
                                 listen: false);

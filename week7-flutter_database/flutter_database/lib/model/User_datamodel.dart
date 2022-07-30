@@ -5,6 +5,10 @@ class User {
   String? usersex;
   DateTime date;
 
-  User(this.username, this.usersurname, this.usernumber, this.usersex,
-      this.date);
+  User(
+      {this.username,
+      this.usersurname,
+      this.usernumber,
+      this.usersex,
+      required this.date});
 }
