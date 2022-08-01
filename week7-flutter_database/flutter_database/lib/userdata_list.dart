@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_database/main.dart';
 import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/model/User_datamodel.dart';
@@ -40,7 +41,9 @@ class _userdataState extends State<userdata> {
                             child: const Text("ไม่"),
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              SystemNavigator.pop();
+                            },
                             child: const Text("ใช่"),
                           ),
                         ],
