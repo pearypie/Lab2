@@ -27,7 +27,26 @@ class _userdataState extends State<userdata> {
                 Icons.arrow_back_ios,
                 color: Colors.black,
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog<bool>(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('ออกจากระบบ'),
+                        content: const Text('ต้องการที่จะออกจากระบบไหม?'),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text("ไม่"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("ใช่"),
+                          ),
+                        ],
+                      );
+                    });
+              },
             ),
             backgroundColor: Colors.white.withOpacity(0.1),
             elevation: 0,

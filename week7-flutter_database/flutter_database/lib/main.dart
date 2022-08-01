@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/model/User_datamodel.dart';
 import 'package:flutter_database/userdata_list.dart';
@@ -65,13 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
-            onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) {
-                // ignore: prefer_const_constructors
-                return const userdata();
-              }));
-            },
+            onPressed: () {},
           ),
           backgroundColor: Colors.white.withOpacity(0.1),
           elevation: 0,
