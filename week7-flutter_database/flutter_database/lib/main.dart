@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_database/model/User_controller.dart';
 import 'package:flutter_database/model/User_datamodel.dart';
 import 'package:flutter_database/userdata_list.dart';
@@ -67,7 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                // ignore: prefer_const_constructors
+                return const userdata();
+              }));
+            },
           ),
           backgroundColor: Colors.white.withOpacity(0.1),
           elevation: 0,
@@ -314,43 +318,66 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: ElevatedButton(
                         style: raisedButtonStyle,
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            var sex;
-                            if (femaleSelected == true) {
-                              setState(() {
-                                sex = 'ผู้หญิง';
-                              });
-                            } else {
-                              setState(() {
-                                sex = 'ผู้ชาย';
-                              });
-                            }
-                            var date = DateTime.now();
-                            var name = nameController.text;
-                            var surname = surnameController.text;
-                            var number = numberController.text;
-                            print('name ---> ${name}');
-                            print('surname ---> ${surname}');
-                            print('number ---> ${number}');
-                            print('sex ---> ${sex}');
-                            print('date ---> ${date}');
+                          showDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('บันทึกข้อมูล'),
+                                  content:
+                                      const Text('คุณต้องการบันทึกข้อมูลใช้'),
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: const Text("ไม่"),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        if (formKey.currentState!.validate()) {
+                                          var sex;
+                                          if (femaleSelected == true) {
+                                            setState(() {
+                                              sex = 'ผู้หญิง';
+                                            });
+                                          } else {
+                                            setState(() {
+                                              sex = 'ผู้ชาย';
+                                            });
+                                          }
+                                          var date = DateTime.now();
+                                          var name = nameController.text;
+                                          var surname = surnameController.text;
+                                          var number = numberController.text;
+                                          print('name ---> ${name}');
+                                          print('surname ---> ${surname}');
+                                          print('number ---> ${number}');
+                                          print('sex ---> ${sex}');
+                                          print('date ---> ${date}');
 
-                            User statement = User(
-                                username: name.toString(),
-                                usersurname: surname.toString(),
-                                usernumber: int.parse(number),
-                                usersex: sex.toString(),
-                                date: date);
+                                          User statement = User(
+                                              username: name.toString(),
+                                              usersurname: surname.toString(),
+                                              usernumber: int.parse(number),
+                                              usersex: sex.toString(),
+                                              date: date);
 
-                            var provider = Provider.of<UserProvider>(context,
-                                listen: false);
-                            provider.addUser(statement);
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              // ignore: prefer_const_constructors
-                              return const userdata();
-                            }));
-                          }
+                                          var provider =
+                                              Provider.of<UserProvider>(context,
+                                                  listen: false);
+                                          provider.addUser(statement);
+                                          Navigator.pushReplacement(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            // ignore: prefer_const_constructors
+                                            return const userdata();
+                                          }));
+                                        }
+                                      },
+                                      child: const Text("ใช่"),
+                                    ),
+                                  ],
+                                );
+                              });
                         },
                         child: Text('ยืนยันข้อมูล'),
                       ),
